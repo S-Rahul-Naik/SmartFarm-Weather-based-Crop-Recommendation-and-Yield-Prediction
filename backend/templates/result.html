@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SmartFarm Result</title>
+        <link rel="stylesheet" href="/static/style.css">
+            <script>
+            // Animate numbers only
+            window.onload = function() {
+                document.querySelectorAll('.animate-number').forEach(function(el) {
+                    const end = parseFloat(el.getAttribute('data-value'));
+                    let start = 0;
+                    const duration = 1200;
+                    const step = Math.max(1, end/60);
+                    let current = start;
+                    function animate() {
+                        current += step;
+                        if(current >= end) {
+                            el.textContent = end % 1 === 0 ? end : end.toFixed(2);
+                        } else {
+                            el.textContent = current % 1 === 0 ? Math.floor(current) : current.toFixed(2);
+                            requestAnimationFrame(animate);
+                        }
+                    }
+                    animate();
+                });
+            }
+            </script>
+</head>
+<body>
+    <div class="result-bg-blur" aria-hidden="true"></div>
+    <div class="container result-card fade-in" role="region" aria-label="Weather Results">
+        <h1 class="main-form-heading">Weather Conditions for {{ location }}</h1>
+        <div class="result-details">
+            <p><span class="icon" aria-hidden="true">🌾</span> <b>Crop:</b> {{ crop|capitalize }}</p>
+            <p><span class="icon" aria-hidden="true">🌡️</span> <b>Temperature:</b> <span class="animate-number" data-value="{{ weather.temp }}">0</span>°C</p>
+            <p><span class="icon" aria-hidden="true">💧</span> <b>Humidity:</b> <span class="animate-number" data-value="{{ weather.humidity }}">0</span>%</p>
+            <p><span class="icon" aria-hidden="true">🌧️</span> <b>Rainfall (last hour):</b> <span class="animate-number" data-value="{{ weather.rain }}">0</span> mm</p>
+            <p><span class="icon" aria-hidden="true">🌾</span> <b>Predicted Yield:</b> <span class="animate-number" data-value="{{ yield_pred }}">0</span> kg/ha</p>
+            <p><span class="icon" aria-hidden="true">⚠️</span> <b>Flood Risk:</b> <span class="flood-status {{ 'low' if flood_risk == 'Low' else 'high' }}">{{ flood_risk }}</span></p>
+        </div>
+        <div class="recommendation-highlight {{ 'good' if 'good' in recommendation|lower or 'sufficient' in recommendation|lower else 'warn' }}" role="status">
+            <span class="rec-label">Recommendation:</span> {{ recommendation }}
+        </div>
+        <div class="result-links">
+            <a href="/form" class="result-link">Check Another</a> |
+            <a href="/logout" class="result-link">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarm Input</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container card">
+        <form method="POST" action="/form">
+            <h1 class="main-form-heading">Enter Crop & Location</h1>
+            <p class="form-desc">Enter your location and crop to get the best farming recommendations for your area.</p>
+            <div class="soft-divider"></div>
+            <div class="login-field">
+                <label class="login-label"><span class="login-label-text">Location</span></label>
+                <input type="text" name="location" placeholder="Location (e.g., Udupi)" required>
+            </div>
+            <div class="login-field">
+                <label class="login-label"><span class="login-label-text">Crop</span></label>
+                <input list="crop-list" name="crop" placeholder="Type or select crop" required autocomplete="off">
+                <datalist id="crop-list">
+                    <option value="Rice">
+                    <option value="Wheat">
+                    <option value="Ragi">
+                    <option value="Maize">
+                    <option value="Barley">
+                    <option value="Corn">
+                    <option value="Sorghum">
+                    <option value="Millet">
+                    <option value="Soybean">
+                    <option value="Groundnut">
+                    <option value="Sugarcane">
+                    <option value="Cotton">
+                    <option value="Mustard">
+                    <option value="Sunflower">
+                    <option value="Chickpea">
+                    <option value="Lentil">
+                    <option value="Pea">
+                    <option value="Pigeonpea">
+                    <option value="Blackgram">
+                    <option value="Greengram">
+                    <option value="Sesame">
+                    <option value="Potato">
+                    <option value="Onion">
+                    <option value="Tomato">
+                    <option value="Cabbage">
+                    <option value="Cauliflower">
+                    <option value="Carrot">
+                    <option value="Spinach">
+                    <option value="Brinjal">
+                    <option value="Okra">
+                    <option value="Pumpkin">
+                    <option value="Cucumber">
+                    <option value="Radish">
+                    <option value="Turnip">
+                    <option value="Sweet Potato">
+                    <option value="Yam">
+                    <option value="Beetroot">
+                    <option value="Garlic">
+                    <option value="Ginger">
+                    <option value="Turmeric">
+                    <option value="Chili">
+                    <option value="Pepper">
+                    <option value="Cardamom">
+                    <option value="Tea">
+                    <option value="Coffee">
+                    <option value="Banana">
+                    <option value="Mango">
+                    <option value="Papaya">
+                    <option value="Pineapple">
+                    <option value="Guava">
+                    <option value="Apple">
+                    <option value="Grapes">
+                    <option value="Orange">
+                    <option value="Lemon">
+                    <option value="Watermelon">
+                    <option value="Muskmelon">
+                    <option value="Pomegranate">
+                    <option value="Lychee">
+                    <option value="Sapota">
+                    <option value="Jackfruit">
+                    <option value="Custard Apple">
+                    <option value="Fig">
+                    <option value="Date Palm">
+                    <option value="Coconut">
+                    <option value="Arecanut">
+                    <option value="Cashew">
+                    <option value="Rubber">
+                    <option value="Oil Palm">
+                    <option value="Betelvine">
+                    <option value="Tobacco">
+                    <option value="Jute">
+                    <option value="Hemp">
+                    <option value="Flax">
+                    <option value="Safflower">
+                    <option value="Linseed">
+                    <option value="Castor">
+                    <option value="Other">
+                </datalist>
+            </div>
+            <button type="submit" style="width:100%; display:flex; align-items:center; justify-content:center;">Check Conditions</button>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="error">{{ messages[0] }}</div>
+              {% endif %}
+            {% endwith %}
+        </form>
+    </div>
+</body>
+</html>

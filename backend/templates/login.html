@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarm Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container card">
+    <form method="POST" action="/login">
+  <h2 style="text-align:center;"><span style="font-size:1.3em; font-weight:800;">Login</span></h2>
+      <div class="login-field">
+        <label class="login-label"><span class="icon">👤</span><span class="login-label-text">Username</span></label>
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
+      <div class="login-field">
+        <label class="login-label"><span class="icon">🔑</span><span class="login-label-text">Password</span></label>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+  <button type="submit" style="width:100%; display:flex; align-items:center; justify-content:center;">Login</button>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="error">{{ messages[0] }}</div>
+        {% endif %}
+      {% endwith %}
+    </form>
+  </div>
+</body>
+</html>
